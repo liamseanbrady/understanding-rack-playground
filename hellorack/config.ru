@@ -16,7 +16,7 @@ class LastWord
   end
 end
 
-class ToLowerEvenIndex
+class CapitalizeBody
   # Our class will be initialized with another Rack app
   def initialize(app)
     @app = app
@@ -60,6 +60,6 @@ class Hello
 end
 
 use LastWord
-use ToLowerEvenIndex
+use CapitalizeBody
 use ToUpper
 run Hello
