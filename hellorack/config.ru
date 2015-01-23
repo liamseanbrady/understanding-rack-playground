@@ -31,6 +31,7 @@ class DetectBadWords
     bad_word_present = false
     body.each do |chunk|
       bad_word_present = true if chunk.downcase.include?(bad_word)
+      break if bad_word_present
     end
     
     if bad_word_present
