@@ -73,4 +73,4 @@ use DetectBadWords
 use ToUpper
 run Hello
 
-# Structure is LastWord(CapitalizeBody(ToUpper(Hello)))
+# Structure is LastWord(DetectBadWords(ToUpper(Hello)))
