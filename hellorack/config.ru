@@ -16,7 +16,7 @@ class LastWord
   end
 end
 
-class CapitalizeBody
+class DetectBadWords   
   # Our class will be initialized with another Rack app
   def initialize(app)
     @app = app
@@ -27,10 +27,19 @@ class CapitalizeBody
     status, headers, body = @app.call(env)
 
     # Iterate through the body, downcasing every second chunk
-    lowercase_even_body = body.map { |chunk| chunk.capitalize }
-
+    bad_word = 'laptop'
+    bad_word_present = false
+    body.each do |chunk|
+      bad_word_present = true if chunk.downcase.include?(bad_word)
+    end
+    
+    if bad_word_present
+      status = 404
+      body = ['Not found because this page contains a bad word']
+    end
+  
     # Pass our new body on through
-    [status, headers, lowercase_even_body]
+    [status, headers, body]
   end
 end
 
@@ -55,12 +64,12 @@ end
 class Hello
   def self.call(env)
     # 200 indicates success, hash of headers, body is in Array so responds to each
-    [200, {"Content-Type" => "text/plain"}, ["Hello from Rack"]]
+    [200, {"Content-Type" => "text/plain"}, ["Hello from Rack. Laptop"]]
   end
 end
 
 use LastWord
-use CapitalizeBody
+use DetectBadWords
 use ToUpper
 run Hello
 
