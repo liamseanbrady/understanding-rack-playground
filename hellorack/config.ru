@@ -63,3 +63,5 @@ use LastWord
 use CapitalizeBody
 use ToUpper
 run Hello
+
+# Structure is LastWord(CapitalizeBody(ToUpper(Hello)))
