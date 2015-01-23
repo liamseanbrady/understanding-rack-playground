@@ -75,4 +75,4 @@ use DetectBadWords
 use ToUpper
 run Hello
  
-# Structure is LastWord(DetectBadWords(ToUpper(Hello)))
+# Structure is LastWord.new(DetectBadWords.new(ToUpper.new(Hello)))
